@@ -1,5 +1,4 @@
 # css
-
 ## 由css的transform：rotate引发的一系列的问题
 > 一些资料
 有关于transform的matrix详见：张鑫旭css
@@ -10,8 +9,9 @@ http://www.zhangxinxu.com/wordpress/2012/06/css3-transform-matrix-%E7%9F%A9%E9%9
 * transform:skew(x + 'deg', y + 'deg') ---> matrix(1,tan(θy),tan(θx),1,0,0);
 
 > sin(x + y) = sin(x)cos(y) + cos(x)sin(y)
-> cos(x + y) = cos(x)cos(y) -sin(x)sin(y)
-> http://math2.org/math/algebra/functions/sincos/properties.htm
+cos(x + y) = cos(x)cos(y) -sin(x)sin(y)
+http://math2.org/math/algebra/functions/sincos/properties.htm
+
 
 * 对于做旋转动画的元素而言，通过`getComputedStyle(ele).transform`可以实时的计算出元素的旋转量，会发现其角度是一直在增加了，也可以认为是一直是0-2PI
 * 对于一个做旋转动画的元素，如下代码所示，当动画设置`animation-play-state:paused`时动画停止，此时动画元素的旋转量为0；（即恢复到了初始状态）
@@ -29,5 +29,12 @@ http://www.zhangxinxu.com/wordpress/2012/06/css3-transform-matrix-%E7%9F%A9%E9%9
     }
     animation-play-state: paused;
 ```
+
+### 正文页右侧固定的问题
+> juejin的实现是拷贝一份DOM，滚动到一定程度的时候显示
+> 这种方式，1、体验好；2、不会影响原有的样式
+
+* 就用户体验而言，应尽量避免，只有中间区域滚动；这不符合大多数用户的做法
+
 
 
