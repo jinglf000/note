@@ -70,6 +70,11 @@ DOM 中的值client(本身)，offset(偏移)，scroll(滚动)
 有什么数据需要放到vuex里面进行管理？好处坏处？
 我是不是把复杂的处理逻辑也放到vuex里面了？
 
+### 5、async JS异步处理（初步指导思路）
+* 单个异步处理使用 `promise`
+* 异步并发处理 `promise.all`
+* 顺序异步 使用 `async await`
+
 
 
 
