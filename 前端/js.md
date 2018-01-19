@@ -14,7 +14,7 @@
 > js的数据类型分为两类：基本数据类型和对象
 
 对于赋值而言，基本数据类型进行值传递，而对象赋值则是引用传递；
-自动追踪依赖意味着，无法对计算属性做自定义配置，这时watch似乎更好些；vue有自己的设定规则，这意味着并不能满足你的所有需求，最好的方式就是，依照推荐的方式换一种实现思路；
+自动追踪依赖意味着，无法对计算属性做自定义配置，这时watch似乎更好些；Vue有自己的设定规则，这意味着有时Vue并不能满足你的所有需求，最好的方式就是，依照推荐的方式换一种实现思路；
 对于基本数据类型而言，值发生变化意味着 watch 和 依赖于此的computed都要重新计算
 对于对象，只有当对象引用发生变化的时候，依赖于此的 computed和watch 才会重新计算
 测试代码如下
@@ -58,13 +58,13 @@ setInterval(() => {
 在VUE中动态设置样式，可以通过提供的`:style`或者`:class`扩展来实现，但是对于某些样式的获取和设置，比如`transform`直接通过DOM获取和设置时比较好的；
 补充：对于VUE所擅长的数据渲染完全可以放心的使用，但是对于DOM宽度高度计算而言（需要确定DOM的状态后才能计算）直接计算比较好；
 有两种设置样式的思路：
-* 1、`:style="{ width: `${offsetWidth}px`}"`直接设置，受VUE的影响比较严重，必须要考虑DOM是否加载的情况；
-* 2、拿到DOM的引用设置DOM，不受VUE的影响，代码会会有庸余；
+* 1、`:style="{ width: `${offsetWidth}px`}"`直接设置，受Vue影响比较严重，必须要考虑DOM是否加载的情况；
+* 2、拿到DOM的引用设置DOM，不受VUE的影响，代码可能会有庸余；
 
 DOM 中的值client(本身)，offset(偏移)，scroll(滚动)
 
-### 4、vuex
-用来进行组件间的数据传递，vuex包含了全局数据的存储state、读取getter、修改setter；vuex中不应该包含大量的计算逻辑；计算逻辑应该由组件来做，或者getter来做
+### 4、vuex 全局的数据中心，
+实现一个全局的单例，用来进行组件间的数据传递，控制数据的修改访问；vuex包含了全局数据的存储state、读取getter、修改setter；vuex中不应该包含大量的计算逻辑；计算逻辑应该由组件来做，或者getter来做
 使用vuex之前应该问的问题：
 为什么要用vuex？不用行吗？
 有什么数据需要放到vuex里面进行管理？好处坏处？
@@ -75,8 +75,87 @@ DOM 中的值client(本身)，offset(偏移)，scroll(滚动)
 * 异步并发处理 `promise.all`
 * 顺序异步 使用 `async await`
 
+**Promise**
+Promise 中一旦执行了resolve或者reject，Promise本身的状态就会发生改变，并且不能再次改变；
+Promise 构造函数中的错误可以被其后的catch捕获到；
+以下情况不能捕获到，并且不会调用then回调
+```
+new Promise((resolve, reject) => {
+	setTimeout(() => {
+    	resolve(aaa * 1);
+	},1000);
+});
+```
 
+异常处理，异常分为两种：1、程序运行抛出的异常，如果异常未被捕获，程序运行终止
+2、用户自定义异常；通过`Error`类构造出的自定义异常；`const err = new Error('error')`程序不会报错，`Error`类和其他的类一样可以被调用和赋值；要想提示异常需要使用`throw err`;而这两类异常都是`Error`类的示例
 
+> throw语句用来抛出一个用户自定义的异常。当前函数的执行将被停止（throw之后的语句将不会执行），并且控制将被传递到调用堆栈中的第一个catch块。如果调用者函数中没有catch块，程序将会终止。
 
+>  try...catch语句将能引发错误的代码放在try块中，并且对应一个响应，然后有异常被抛出；catch能够捕获程序异常和自定义异常；
 
+```
+const err = new Promise((resolve, reject) => {
+	setTimeout(() => {
+    	resolve(new Error('errorrrrrr'));
+    }, 1000);
+});
+err.then((res) => {
+	console.log('then',res);
+}).catch((err) => {
+	cosnole.log('catch',err)
+});
+// output
+// then Error: errorrrrrr
+    at setTimeout (<anonymous>:3:14)
+```
 
+### 6、正则表达式
+> .（小数点）匹配除换行符之外的任何单个字符。
+> [\s\S] [^] 能匹配包括 \n 在内的所有字符
+
+\S 非空白字符
+\s 匹配空白字符 包括：空格、制表符、换页符和换行符；
+
+一下内容对应的字符，只是表明了位置，并不代表任何字符，也就是**零宽**
+\b 匹配一个词的边界
+\B 匹配一个非单词边界
+^ 字符开始
+$ 字符结尾
+
+肯定 positive lookahead (?=xx) 肯定，匹配列表中必须有xx,
+否定 negative lookahead (?!) 否定，匹配列表不能有xx
+```
+const reg1 = /\b\d/g;
+const reg2 = /\b\d(?=px)/g;
+const reg3 = /\b\d(?!px)/g;
+const str = '1px 2em 3pt 4px';
+
+console.log(str.match(reg1));// [ '1', '2', '3', '4' ]
+console.log(str.match(reg2));// [ '1', '4' ] 匹配一个数字，数字后面要有px，返回数字
+console.log(str.match(reg3));// [ '2', '3' ] 匹配一个数字，数字后面不能有px，返回数字
+
+```
+如一下表明要匹配三个连续相同的字符，并且后面没有三个连续相同的字符
+\1 \2 \3 表示匹配到的字符组；
+
+```
+var s = 'aaalllsss0tAAAnnn999';
+var reg = /(\w)\1{2}(?!(\w)\2{2})/g;
+
+console.log(s.match(reg));// [ 'sss', '999' ]
+```
+最后一问：
+```
+var web_development = "python php ruby javascript jsonp perhapsphpisoutdated";
+```
+
+找出其中 包含 p 但不包含 ph 的所有单词，即
+
+[ 'python', 'javascript', 'jsonp' ]
+
+引用一个大神的答案
+> https://stackoverflow.com/questions/39570875/find-all-words-that-contains-p-but-not-ph/39571868#39571868
+```
+\b(?:p(?!h)|[^p\s])*?p(?!h)(?:p(?!h)|[^p\s])*?\b
+```
