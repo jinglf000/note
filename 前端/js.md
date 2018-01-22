@@ -159,3 +159,6 @@ var web_development = "python php ruby javascript jsonp perhapsphpisoutdated";
 ```
 \b(?:p(?!h)|[^p\s])*?p(?!h)(?:p(?!h)|[^p\s])*?\b
 ```
+### 7、字符串的操作
+`str.substr(start,length)` 从指定位置获取指定长度的字符串
+`str.substring(start,end)` 返回开始和结束位置的字符串
