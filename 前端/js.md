@@ -159,6 +159,21 @@ var web_development = "python php ruby javascript jsonp perhapsphpisoutdated";
 ```
 \b(?:p(?!h)|[^p\s])*?p(?!h)(?:p(?!h)|[^p\s])*?\b
 ```
+
+
 ### 7、字符串的操作
 `str.substr(start,length)` 从指定位置获取指定长度的字符串
 `str.substring(start,end)` 返回开始和结束位置的字符串
+
+
+### 8、XHR对象的header
+> 浏览器不允许用户手动设置敏感的Http header
+包括但不限于
+cookie
+host
+referer
+
+因此 XHR请求中的host和referer都是无法设置的，需要服务器来实现
+
+### 9、VUE js 源码学习
+http://hcysun.me/2017/03/03/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/
