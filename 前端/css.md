@@ -1,7 +1,7 @@
 # css
 ## 由css的transform：rotate引发的一系列的问题
 > 一些资料
-有关于transform的matrix详见：张鑫旭css
+1、有关于transform的matrix详见：张鑫旭css
 http://www.zhangxinxu.com/wordpress/2012/06/css3-transform-matrix-%E7%9F%A9%E9%98%B5/
 * transform:translate(x,y)  ---> transform: matrix(1,0,0,1,x,y);
 * transform:scale(x,y) ---> transform:maxtrix(x,0,0,y,0,0);
@@ -30,11 +30,20 @@ http://math2.org/math/algebra/functions/sincos/properties.htm
     animation-play-state: paused;
 ```
 
-### 正文页右侧固定的问题
+### 2、正文页右侧固定的问题
 > juejin的实现是拷贝一份DOM，滚动到一定程度的时候显示
 > 这种方式，1、体验好；2、不会影响原有的样式
 
 * 就用户体验而言，应尽量避免，只有中间区域滚动；这不符合大多数用户的做法
+
+### 3、html body window 显示元素
+结论如下：（在IE8-11，EDGE，chrome（最新）火狐（最新））
+* 显示元素中，根元素为window（浏览器窗口）不是html和body;html和body都可以设置`margin padding`属性
+* html的高度完全是由body来决定的，在没有手动设置的情况下；
+* 在设置body为`overflow:hidden,auto`（当然body为定高）的情况下，只有同时设置html为`overflow`不为默认值得情况下才能生效
+
+原因分析：（可能并不准确）
+是html和body作用在一起共同控制页面元素的显示，而html body默认的`overflow`属性是visible，而body是html元素下唯一能够在页面显示的元素，其特性和div元素并不一致
 
 
 
