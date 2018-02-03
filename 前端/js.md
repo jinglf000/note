@@ -173,7 +173,27 @@ cookie
 host
 referer
 
-因此 XHR请求中的host和referer都是无法设置的，需要服务器来实现
+因此 XHR请求中的host和referer
 
 ### 9、VUE js 源码学习
 http://hcysun.me/2017/03/03/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/
+
+
+### 10、字符编码
+>  https://www.cnblogs.com/gavin-num1/p/5170247.html   很好的介绍性文章；
+
+计算机的符号有两种0,1；人类语言的符号则有很多，要想让语言符号能够在计算机系统之间传播必须要对字符进行编码；
+* ASCII 对英文字符进行了编码；用8bit两个字节byte表示了128个符号；
+* 为了能够在计算机中处理汉字，国家标准出台了GBK标准，兼容原有的ACSII并添加了独一无二的汉字，并编码了汉字对应的码集；（GBK GB2312 ...）
+* Unicode 编码，将世界上所有的符号都纳入其中，每一个符号都有一个独一无二的编码；它规定了符号的二进制代码；同样也是ASCII的超集；原有的ASCII不变
+* Unicode 编码是一个符号集，他只规定了符号的二进制代码，却没有规定这个二进制代码如何存储；
+
+
+utf-8是unicode 的一种实现；
+
+js中：escape 返回：返回一个字符的Unicode编码值；对应的解码为unescape
+encodeURI 返回内容的编码方式，decodeURI解码；不对“; / ? : @ & = + $ , #”英文 数字编码
+encodeURIComponent decodeURIComponent 对所有内容进行编码
+
+JavaScript的字符串本来就是unicode，即不存在utf-8的字符串，也不存在gb2312的字符串；（utf-8和GB312为了存储而实现的）
+
