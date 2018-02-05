@@ -203,7 +203,8 @@ console.log(escape(str));// 返回str的unicode编码
 console.log(encodeURI(str));// 返回中文的utf-8的编码（通常用于url上内容传递，因此要进行编码）
 ```
 
-node.js中的 流，buffer是有文件格式的可以是 utf-8 也可以是 gbk的
+node.js中的 描述二进制的对象，buffer是有文件格式的可以是 utf-8 也可以是 gbk的，因此在解码的时候需要对buffer进行解码，使用`iconv-lite`
+
 Q&A:
 - 1、js中的utf-8编码，这种说法对吗？
 ans：不对，js中所有的代码都是unicode（前提示文件为utf-8格式）；utf-8或者gbk都是文件存储的方式；也就是说涉及到文件存储的时候才有编码方式这一说；存储也就是对原有的unicode码的在编码；
