@@ -78,7 +78,7 @@ DOM 中的值client(本身)，offset(偏移)，scroll(滚动)
 **Promise**
 Promise 中一旦执行了resolve或者reject，Promise本身的状态就会发生改变，并且不能再次改变；
 Promise 构造函数中的错误可以被其后的catch捕获到；
-以下情况不能捕获到，并且不会调用then回调
+以下情况不能捕获到，程序会在执行到`aaa * 1`就报错，并且不会调用then回调
 ```
 new Promise((resolve, reject) => {
 	setTimeout(() => {
@@ -173,7 +173,7 @@ cookie
 host
 referer
 
-因此 XHR请求中的host和referer
+因此 XHR请求中的host和referer是无法通过手动来设置的
 
 ### 9、VUE js 源码学习
 http://hcysun.me/2017/03/03/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/
@@ -198,7 +198,7 @@ encodeURIComponent decodeURIComponent 对所有内容进行编码
 JavaScript的字符串本来就是unicode，即不存在utf-8的字符串，也不存在gb2312的字符串；（utf-8和GB312为了存储而实现的）
 
 ``` js
-const str = '你好 utf8';// 
+const str = '你好 utf8';//
 console.log(escape(str));// 返回str的unicode编码
 console.log(encodeURI(str));// 返回中文的utf-8的编码（通常用于url上内容传递，因此要进行编码）
 ```
@@ -209,7 +209,7 @@ Q&A:
 - 1、js中的utf-8编码，这种说法对吗？
 ans：不对，js中所有的代码都是unicode（前提示文件为utf-8格式）；utf-8或者gbk都是文件存储的方式；也就是说涉及到文件存储的时候才有编码方式这一说；存储也就是对原有的unicode码的在编码；
 - 2、js中涉及到文件编码的有哪些？
-ans：直接读取文件时，服务起接受内容时，都是以流的方式进行存取，此时的流是有编码方式的；需要用正确的编码方式才能打开，否则的话就会出现乱码；
+ans：直接读取文件时，服务器接受内容时，都是以流的方式进行存取，此时的流是有编码方式的；需要用正确的编码方式才能打开，否则的话就会出现乱码；
 - 3、乱码？
 ans：要想正确的打开一个文件，必须知道文件的编码方式，用utf-8的方式去打开GBK文件肯定是乱码的
 

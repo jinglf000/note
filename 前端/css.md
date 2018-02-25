@@ -30,7 +30,8 @@ http://math2.org/math/algebra/functions/sincos/properties.htm
     animation-play-state: paused;
 ```
 
-### 2、正文页右侧固定的问题
+### 2、正文页右侧广告或者菜单固定的问题
+> 当网页内容过长时，保证右侧导航或广告始终固定到页面右侧
 > juejin的实现是拷贝一份DOM，滚动到一定程度的时候显示
 > 这种方式，1、体验好；2、不会影响原有的样式
 
