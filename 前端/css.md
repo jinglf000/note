@@ -47,4 +47,13 @@ http://math2.org/math/algebra/functions/sincos/properties.htm
 是html和body作用在一起共同控制页面元素的显示，而html body默认的`overflow`属性是visible，而body是html元素下唯一能够在页面显示的元素，其特性和div元素并不一致
 
 
+### 4、伪类选择器
+
+* 伪类选择器的有限级要比单独的选择器优先级高，即`p:nth-child(2)` > `p`
+* 伪类选择器是对选中后的元素，再次遍历 不同的选择器遍历规则不同
+* `:first-child,:last-child,:nth-child()` 会根据获取到的元素，所在父元素的次序来查找，`first `该元素是父元素中的第一个子元素
+* `:first-of-type,:last-of-type,:nth-of-type()` 会根据获取到的元素，相对于兄弟元素的位置来决定
+* `:checked,`
+
+
 
