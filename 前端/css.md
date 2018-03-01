@@ -56,4 +56,25 @@ http://math2.org/math/algebra/functions/sincos/properties.htm
 * `:checked,`
 
 
+### 5、块级元素和内联元素
+块级元素独占一行，内联元素无法设置，宽高设置的padding和margin中，只有left 和right才会生效。对于margin top和bottom在布局。对于padding top 和bottom 会影响元素本身，但是不会影响其他元素。
 
+如图所示，虽然灰色块的`padding top bottom`确实设置了，但其不会影响其余元素的定位；
+
+![bfc实例](./imgs/bfc.png)
+
+### 6、关于BFC（Block Formating Contexts）块级格式化上下文
+
+只要元素满足下面任一条件即可触发 BFC 特性：
+*	body 根元素
+*	浮动元素：float 除 none 以外的值
+*	绝对定位元素：position (absolute、fixed)
+*	display 为 inline-block、table-cells、flex
+*	overflow 除了 visible 以外的值 (hidden、auto、scroll)
+
+有三个特性：
+* 1. 同一个 BFC 下外边距会发生折叠
+* 2. BFC 可以包含浮动的元素（清除浮动）
+* 3. BFC 可以阻止元素被浮动元素覆盖
+
+详细见： https://zhuanlan.zhihu.com/p/25321647
