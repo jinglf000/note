@@ -78,3 +78,20 @@ http://math2.org/math/algebra/functions/sincos/properties.htm
 * 3. BFC 可以阻止元素被浮动元素覆盖
 
 详细见： https://zhuanlan.zhihu.com/p/25321647
+
+### 7、一些兼容性的问题
+
+- 7.1  Chrome 中文界面下默认会将小于 12px 的文本强制按照 12px 显示
+
+解决方法：可通过加入 CSS 属性 -webkit-text-size-adjust: none; 解决
+
+
+### 8、链接伪类样式
+`:link` a标签为链接是生效，若a标签无`href`则不生效
+`:visited`  表明该标签已经访问过，无论放置的位置如何，其优先级高于`:link`
+前两类表明了链接的状态，未被访问过和已访问过
+
+`:active` 点击时，从触发情况来看，active在hove之后
+`:hover` 悬浮到a链接上
+后两类描述了a链接的交互状态，悬浮时或者点击时；因此书写样式时，为了能让样式更好的展现，active要方到hover后面，并且两者都要放到 link和visited后面；
+
