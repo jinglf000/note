@@ -53,7 +53,7 @@ http://math2.org/math/algebra/functions/sincos/properties.htm
 * 伪类选择器是对选中后的元素，再次遍历 不同的选择器遍历规则不同
 * `:first-child,:last-child,:nth-child()` 会根据获取到的元素，所在父元素的次序来查找，`first `该元素是父元素中的第一个子元素
 * `:first-of-type,:last-of-type,:nth-of-type()` 会根据获取到的元素，相对于兄弟元素的位置来决定
-* `:checked,`
+* `:checked,:enabled,:disabled` 都是功能性选择器
 
 
 
