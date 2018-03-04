@@ -8,11 +8,12 @@ js书籍
 ### 1.1  js的执行分为两个阶段
 
 *   编译阶段，编译阶段会处理代码中的声明，并把变量放置与作用域中存储；并生成可被js引擎执行的代码
-```
+
+```js
   var x = 2;// 编译阶段处理var x ，对x进行声明 ，x = 2 为赋值语句，需要js引擎去执行
   function foo (a) {console.log(a)};// 编译阶段对函数进行声明，声明的同时对其已经赋值了（函数特殊）
-  
 ```
+
 *   js引擎执行阶段，引擎执行编译生成的代码；引擎执行时，面对变量会在作用域内进行查找
 >   查找分为LHS引用，和RHS引用；简单来说LHS，找到变量容器本身，并进行赋值；RHS则是找到源式值
 >   函数执行时，函数内部的代码会再次执行一次，同样也会走编译--执行的流程；
@@ -28,39 +29,100 @@ js书籍
 
 *   无论函数是具名函数还是匿名函数，实际上都牵扯到了函数的定义，通常情况下，匿名函数不仅在声明函数而且会把函数传递到对应执行器中去；比如
 *   函数的作用域，是由函数定义时决定的，也就是位置决定的
-```
+
+
+```js
 setTimeout(function () {...}, 1000);// 实际上当执行到此的时候，同样会对函数进行定义，只不过没办法在此引用这个函数，并且函数会被传递到执行器中
 axios.get(url).then(function () {...})
 
 ```
+
 *   闭包也可以这样去理解，当函数作为值进行传递的时候，函数的作用域如何处理
 *   到了ES6，`let` 和 `const` 会使得代码块`{}` 变成块级作用域，同样会实现闭包的效果
 *   通过JS的任何值都能作为返回值的特性，使用函数可以实现模块的功能（当然ES6 module是原生实现）模块
 *   ES6模块：1、js原生支持的；2、js运行时，编译器会在编译阶段检查导入的模块API成员的引用是否存在，若不存在会抛出早期的错误；
-*   
-```
-function module () {
+
+
+```js
+    function module () {
     var a = '12';
     var b = [1,2,5];
-    
+
     function doSomething () {
         ...
     }
-    
-    
+
+
     function doElseSomething () {
         console.log(a);
     }
-    
+
     return {
         doSomething: doSomething,
         doElseSomething: doElseSomething
     }
-}
-var x = module();
-x.doSomething();
-
+    }
+    var x = module();
+    x.doSomething();
 ```
+
 ## 3、对象
 
+JavaScript 中的对象有字面形式（比如 var a = { .. } ）和构造形式（比如 var a = new
+Array(..) ）。字面形式更常用，不过有时候构造形式可以提供更多选项。
 
+许多人都以为“JavaScript 中万物都是对象”，这是错误的。对象是 6 个（或者是 7 个，取
+决于你的观点）基础类型之一。对象有包括 function 在内的子类型，不同子类型具有不同
+的行为，比如内部标签 [object Array] 表示这是对象的子类型数组。
+
+对象就是键 / 值对的集合。可以通过 .propName 或者 ["propName"] 语法来获取属性值。访
+问属性时，引擎实际上会调用内部的默认 [[Get]] 操作（在设置属性值时是 [[Put]] ），
+[[Get]] 操作会检查对象本身是否包含这个属性，如果没找到的话还会查找 [[Prototype]]
+链（参见第 5 章）。
+
+属性的特性可以通过属性描述符来控制，比如 writable 和 configurable 。此外，可以使用
+Object.preventExtensions(..) 、 Object.seal(..) 和 Object.freeze(..) 来设置对象（及其
+属性）的不可变性级别。
+
+属性不一定包含值——它们可能是具备 getter/setter 的“访问描述符”。此外，属性可以是
+可枚举或者不可枚举的，这决定了它们是否会出现在 for..in 循环中。
+
+你可以使用 ES6 的 for..of 语法来遍历数据结构（数组、对象，等等）中的值， for..of
+会寻找内置或者自定义的 @@iterator 对象并调用它的 next() 方法来遍历数据值。
+
+## 4、类
+> 面向对象编程强调的是数据和操作数据的行为本质上是互相关联的（当然，不同的数据有
+不同的行为），因此好的设计就是把数据以及和它相关的行为打包（或者说封装）起来。
+这在正式的计算机科学中有时被称为数据结构。
+
+软件思想对现实问题的一种抽象（abstract）；类（class） 继承（inhert） 实例（instance）
+类 / 继承描述了一种代码的组织结构形式——一种在软件中对真实世界中问题领域的建模方法
+
+在ES6中通过以下方式创建类，并实例化
+
+```js
+
+class Car {// 类，类内部定义的方法都是不可枚举的
+  constructor(name) {
+  	this.name = name;
+  }
+  sayHello() {
+  	console.log('say hello');
+  }
+}
+
+class bmw extends Car {
+  constructor(name, str) {
+  	super(name);
+    this.str = str;
+  }
+}
+```
+ES6的继承是子类实例的构建，是基于父类实例加工；
+
+* es6中无法定义私有属性和私有方法，
+* 因为 ES6 明确规定，Class 内部只有静态方法，static没有静态属性。
+* ES6目前没有私有方法和私有属性
+* ES6目前只能在constructor内定义属性，而不能在constructor外定义，
+
+？？ 需ES6的Extends http://es6.ruanyifeng.com/#docs/class-extends 和 page 147
