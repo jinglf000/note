@@ -120,9 +120,19 @@ class bmw extends Car {
 ```
 ES6的继承是子类实例的构建，是基于父类实例加工；
 
+定义时：
 * es6中无法定义私有属性和私有方法，
 * 因为 ES6 明确规定，Class 内部只有静态方法，static没有静态属性。
 * ES6目前没有私有方法和私有属性
 * ES6目前只能在constructor内定义属性，而不能在constructor外定义，
 
-？？ 需ES6的Extends http://es6.ruanyifeng.com/#docs/class-extends 和 page 147
+继承时：
+* 使用`super`的时候，必须显式指定是作为函数、还是作为对象使用，否则会报错。
+* super 作为函数时，只能用在子类的构造函数中constructor，其他地方报错。
+* super作为对象时，在普通方法中，指向父类的原型对象；在静态方法中，指向父类。
+* ES6 规定，通过super调用父类的方法时，方法内部的this指向子类
+
+
+![classExtend](./imgs/es6-extends.png)
+
+###

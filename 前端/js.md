@@ -180,7 +180,7 @@ http://hcysun.me/2017/03/03/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/
 
 
 ### 10、字符编码
->  https://www.cnblogs.com/gavin-num1/p/5170247.html   很好的介绍性文章；
+>  https://www.cnblogs.com/gavin-num1/p/5170247.html   很好的介绍性文章；
 
 计算机的符号有两种0,1；人类语言的符号则有很多，要想让语言符号能够在计算机系统之间传播必须要对字符进行编码；
 * ASCII 对英文字符进行了编码；用8bit两个字节byte表示了128个符号；
@@ -218,5 +218,38 @@ ans：要想正确的打开一个文件，必须知道文件的编码方式，�
 * 后续的ES新增内容为ES5的扩充，这也就意味着，老式的js程序仍然可以在新式的浏览器中运行，原有的js写法不会发生变化，ES+标准推荐使用新的方式去书写，以便能编写出更健壮的代码；同时也就意味新增的内容也是遵循原有的规范的；
 
 
+### 12、对象的valueOf toString方法
+对象的`valueOf`方法能够返回对象的**原始值**（primitive），默认情况下object的原始值是对象本身，对一些js中的核心对象，返回值又各有各的不同
+| 对象| 返回值 |
+|---|---|
+| Array | 返回数组对象本身。 |
+| Boolean| 布尔值。|
+| Date| 存储的时间是从 1970 年 1 月 1 日午夜开始计的毫秒数 UTC。（返回值类型为number）|
+| Function| 函数本身。 |
+| Number| 数字值|
+| Object| 对象本身。这是默认情况。 |
+| String| 字符串值。|
+|Math Error| Math 和 Error 对象没有 valueOf 方法。|
+
+**valueOf** 方法返回对象的原始值，不经常使用
+**toString**方法返回对象的字符串表示，在隐式类型转换中会用到
+```js
+var obj = {
+  name: 'hello',
+  age: 12
+};
+
+obj.toString = function () {
+	console.log('obj 调用了toSting方法');
+	return obj.name + obj.age;
+}
+var str = '这是一个str';
+
+console.log(str + obj);// 这是一个strhello12，调用了toString方法
+
+obj = {};
+
+console.log(str + obj);// 这是一个str[object Object]，默认toString返回'[object Object]'
+```
 
 
