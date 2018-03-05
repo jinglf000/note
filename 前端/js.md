@@ -251,5 +251,33 @@ obj = {};
 
 console.log(str + obj);// 这是一个str[object Object]，默认toString返回'[object Object]'
 ```
+### 13、javascript 中的复制
+js中的函数（用标准、可靠的方法）真正地复制，所以你只能复制对共享函数对象的引用；
+其他内容则可以通过`JSON.parse(JSON.stringify())`所以应当尽量避免复制操作的设计；
+一定要注意，只在能够提高代码可读性的前提下使用显式混入，避免使用增加代码理解难、度或者让对象关系更加复杂的模式。
+js中使用prototype原型的方式实现类和继承
+
+**Prototype** 原型继承
+**`for in`**使用 for..in 遍历对象时原理和查找 [[Prototype]] 链类似，任何可以通过原型链访问到（并且是 enumerable ，参见第 3 章）的属性都会被枚举。**`in`**使用 in 操作符来检查属性在对象中是否存在时，同样会查找对象的整条原型链（无论属性是否可枚举）：
+* 对于从对象上获取属性来说，`obj.name`会触发原型链的查询，否则会返回`undefined`
+* 对于从对象上设置属性来说，若原型链上存在该属性，赋值时会有不同（根据不同的情况进行赋值）
+
+
+```js
+var obj = {};
+obj.a = 5;
+var inhertObj = Object.create(obj);
+
+inhertObj.a ++;// inhertObj.a = inhertObj.a + 1;
+
+console.log(inhertObj.a);// 6
+console.log(obj.a);// 5
+```
+注意在执行以上操作时产生的隐式委托
+Javascript和面向类的语言不同，它并没有类来作为对象的抽象模式或这蓝图；实际上，JavaScript 才是真正应该被称为“面向对象”的语言，因为它是少有的可以不通过类，直接创建对象的语言。
+**JavaScript 中只有对象**
+
+> Javascript中通过原型继承，来实现对象的继承，通常这是动态语言版本的类继承；和通常面向对象的语言的类继承*几乎是完全相反的*行为；
+> 继承意味着复制操作，JavaScript（默认）并不会复制对象属性。相反，JavaScript 会在两个对象之间创建一个关联，这样一个对象就可以通过委托访问另一个对象的属性和函数。委托（参见第 6 章）这个术语可以更加准确地描述 JavaScript 中对象的关联机制。
 
 
