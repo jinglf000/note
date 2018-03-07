@@ -156,12 +156,12 @@ javascript中的对象通过委托的方式访问对象本身并没有，而在�
 
 ## 5、类型
 javascript中变量是没有类型的，（变量是值得容器）只有值才有类型，变量在使用时代表的是变量对应的值，并且变量可以随时持有任何类型的值。
-```
+```js
 undefined == 'undefined';// false
 ```
 已在作用域中声明但还没有赋值的变量，是 undefined 的。相反，还没有在作用域中声明
 过的变量，是 undeclared 的。
-```
+```js
 var a;
 a; // undefined
 b; // ReferenceError: d is not defined 
@@ -199,12 +199,31 @@ number”）、 +Infinity 、 -Infinity 和 -0 。
 通过`new String('232')` 创造的为`'232'`的**封装对象**
 
 封装对象（object wrapper）扮演着十分重要的角色。由于基本类型值没有 .length和 .toString() 这样的属性和方法，需要通过封装对象才能访问，此时 JavaScript 会自动为基本类型值包装（box 或者 wrap）一个封装对象：
-```
+```js
 var a = 'abc';
 a.length; // 3
 ```
 通常情况下我们只要知道，封装对象存在，以及在某些运算中会自动执行即可，不推荐直接使用封装对象。js会对封装对象在必要的时候进行拆分通过`valueOf`方法；
 对于基本类型的值，js在运算的过程中会发生隐式的封装 和 隐式的拆分；
 
+类数组对象，通过`Array.prototype.slice.call(obj)`或者`Array.from(obj)`；可转换为数组；其中`obj.length`属性决定了生成的数组长度；`obj[0]`决定数组中第0位的值依次类...
+
+除非万不得已不要使用`Object Function RegExp Array`
+
+**总结**
+JavaScript 为基本数据类型值提供了封装对象，称为原生函数（如 String 、 Number 、 Boolean
+等）。它们为基本数据类型值提供了该子类型所特有的方法和属性（如： String#trim() 和Array#concat(..) ）。
+对于简单标量基本类型值，比如 "abc" ，如果要访问它的 length 属性或 String.prototype方法，JavaScript 引擎会自动对该值进行封装（即用相应类型的封装对象来包装它）来实现对这些属性和方法的访问
+
+## 8、强制类型转换
+
+**toString**
+ null 转换为 "null" ， undefined 转换为 "undefined" ， true转换为 "true" 。数字的字符串化则遵循通用规则，对象会调用`toString`方法，数组的方法：会有单元字符串化以后再用 "," 连接起
+来
+**toNumber** `Number()`
+ true 转换为 1 ， false 转换为 0 。 undefined 转换为 NaN ， null 转换为 0 。'' 转化为 0；
+ 对象通过以下两部转化：会首先
+（通过内部操作 DefaultValue ，参见 ES5 规范 8.12.8 节）检查该值是否有 valueOf() 方法。
+如果有并且返回基本类型值，就使用该值进行强制类型转换。如果没有就使用 toString()的返回值（如果存在）来进行强制类型转换。如果 valueOf() 和 toString() 均不返回基本类型值，会产生 TypeError 错误。
 
 
