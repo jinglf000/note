@@ -154,3 +154,57 @@ javascript中的对象通过委托的方式访问对象本身并没有，而在�
 相比之下，“委托”是一个更合适的术语，因为对象之间的关系不是复制而是委托
 
 
+## 5、类型
+javascript中变量是没有类型的，（变量是值得容器）只有值才有类型，变量在使用时代表的是变量对应的值，并且变量可以随时持有任何类型的值。
+```
+undefined == 'undefined';// false
+```
+已在作用域中声明但还没有赋值的变量，是 undefined 的。相反，还没有在作用域中声明
+过的变量，是 undeclared 的。
+```
+var a;
+a; // undefined
+b; // ReferenceError: d is not defined 
+typeof a; // 'undefined'
+typeof b;// 'undefined'
+```
+**总结**
+JavaScript 有 七 种 内 置 类 型： null 、 undefined 、 boolean 、 number 、 string 、 object 和
+symbol ，可以使用 typeof 运算符来查看。
+变量没有类型，但它们持有的值有类型。类型定义了值的行为特征。
+很多开发人员将 undefined 和 undeclared 混为一谈，但在 JavaScript 中它们是两码事。
+undefined 是值的一种。undeclared 则表示变量还没有被声明过。
+遗憾的是，JavaScript 却将它们混为一谈，在我们试图访问 "undeclared" 变量时这样报错：ReferenceError: a is not defined，并且 typeof 对 undefined 和 undeclared 变量都返回"undefined" 。
+然而，通过 typeof 的安全防范机制（阻止报错）来检查 undeclared 变量，有时是个不错的办法。
+
+## 6、值
+使用`Number.isNaN()`来代替`window.isNaN()` number的方法只有参数为`NaN`时返回`true`
+window的只要不是数字都是返回`true`
+`object.is(a,b)` 用于处理包含特殊情况（NaN，0，-0）判断是否相等；
+值复制和引用复制，我们无法自行决定使用值复制还是引用复制，一切由值的类型来决定。在赋值操作和参数传递的时候，会出现这种情况。
+**总结**
+JavaScript 中的数组是通过数字索引的一组任意类型的值。字符串和数组类似，但是它们的行为特征不同，在将字符作为数组来处理时需要特别小心。JavaScript 中的数字包括“整数”和“浮点型”。
+基本类型中定义了几个特殊的值。
+
+null 类型只有一个值 null ， undefined 类型也只有一个值 undefined 。所有变量在赋值之前默认值都是 undefined 。 void 运算符返回 undefined 。
+
+数 字 类 型 有 几 个 特 殊 值， 包 括 NaN （ 意 指“not a number”， 更 确 切 地 说 是“invalid
+number”）、 +Infinity 、 -Infinity 和 -0 。
+
+简单标量基本类型值（字符串和数字等）通过值复制来赋值 / 传递，而复合值（对象等）通过引用复制来赋值 / 传递。JavaScript 中的引用和其他语言中的引用 / 指针不同，它们不能指向别的变量 / 引用，只能指向值。
+
+## 7、内置函数（native function）
+
+**String() Number() Boolean() Array() Function() Object() RegExp() Date() Error() Symbol()**
+通过`new String('232')` 创造的为`'232'`的**封装对象**
+
+封装对象（object wrapper）扮演着十分重要的角色。由于基本类型值没有 .length和 .toString() 这样的属性和方法，需要通过封装对象才能访问，此时 JavaScript 会自动为基本类型值包装（box 或者 wrap）一个封装对象：
+```
+var a = 'abc';
+a.length; // 3
+```
+通常情况下我们只要知道，封装对象存在，以及在某些运算中会自动执行即可，不推荐直接使用封装对象。js会对封装对象在必要的时候进行拆分通过`valueOf`方法；
+对于基本类型的值，js在运算的过程中会发生隐式的封装 和 隐式的拆分；
+
+
+
