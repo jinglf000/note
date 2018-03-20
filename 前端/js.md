@@ -343,4 +343,4 @@ js代码分为，立即执行
 ### 15、异步的解决方案
 
 `Promise` ---> `async await`都是基于 *Promise*，一定要熟知Promise，并且要把异步编程风格往Promise靠拢，使用Promise对原有的异步处理进行封装。
-
+9
