@@ -36,4 +36,5 @@ productionTip:!1
 ```
 ## vue 数据观测
 
-* 
+>  https://gitissue.com/issues/5a04398158dc9b606dad6d80
+
