@@ -14,5 +14,8 @@ ls -l
 drwx---rw- root root
 目录 读写执行（可以进入） 列出用户的权限 --拥有者 用户组 其他
 ```
+## 常用的linux 命令
+
+> http://blog.csdn.net/xufei512/article/details/53321980
 
 
