@@ -18,4 +18,12 @@ drwx---rw- root root
 
 > http://blog.csdn.net/xufei512/article/details/53321980
 
+### 1、创建目录
+```shell
+mkdir 
+```
 
+### 2、删除目录
+```shell
+rm -fr dir // remove focus recursive 强制递归删除文件夹下的所有内容
+```
