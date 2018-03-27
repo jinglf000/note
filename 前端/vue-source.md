@@ -53,3 +53,26 @@ productionTip:!1
 实际上在JavaScript这种将函数作为一等对象的语言里，策略模式已经融入到了语言本身当中，我们经常使用高阶函数来封装不同的行为，并且把它传递到另一个函数中。当我们对这些函数发出“调用”的消息时，不同的函数会返回不同的执行结果。所以在JavaScript中，“函数对象的多态性”会更加简单些。
 
 把复杂的运算封装到函数中，并对函数进行四处传递，实现算法的调用。
+
+## 5、代码实现
+
+```js
+codeABC && codeDEF // codeABC为true时才能执行codeDEF，用于 obj && obj.contain = {}
+
+codeABC || codeDEF // codeABC为true是codeDEF不执行，用于 obj || obj = {}
+
+```
+
+vue-runtime版本是不含有compiler的，是不会把template 转换成renderFn，这也就要求vue实例或者component中模板必须是render函数；挂载时，`mount` 对应的与`src/platfoems/web/runtime/index.js`中的`$mount`函数。
+
+vue-runtime-compiler 含有compiler，因此会包含有compiler部分的代码，会把字符串模板编译成renderFn再来调用原来的`$mount`函数，存在着函数覆盖。
+
+
+问题：
+computed编译后为一个watcher
+date通过observe转换为了getter和setter 通过dep来收集依赖
+而依赖必须是watcher 	，会把template转换为watch，问题是一个模板里面有两个
+<p>{{a + b}}</p> <span>{{a}}</span> 会编译成几个watch？
+
+还是很复杂啊。。。
+
