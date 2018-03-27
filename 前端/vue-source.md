@@ -1,7 +1,12 @@
 vue-source code
 ===
+## 0、源码分析
 
-## Flow
+ _注重大体框架，从宏观到微观_
+> http://hcysun.me/2017/03/03/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/
+
+
+## 1、Flow
 > Flow is a static type checker for javascript 
 
 **static type annotation** 
@@ -11,7 +16,7 @@ vue-source code
 
 
 
-## Node 
+## 2、Node 
 
 通过设置node进程中的 **process.env.NODE_ENV**变量来区分`production`mode`development`
 而在真实打包后的代码中，开发环境中该变量 `process.env.NODE_ENV` 会被替换为`development`
@@ -34,7 +39,17 @@ productionTip:  "development"  !==  'production',
 */
 productionTip:!1
 ```
-## vue 数据观测
+## 3、vue 数据观测
 
 >  https://gitissue.com/issues/5a04398158dc9b606dad6d80
 
+
+## 4、策略模式（设计模式）
+
+> 在函数作为一等对象的语言中，策略模式是隐形的。strategy就是值为函数的变量。
+
+在JavaScript中，除了使用类来封装算法和行为之外，使用函数当然也是一种选择。这些“算法”可以被封装到函数中并且四处传递，也就是我们常说的“高阶函数”。
+
+实际上在JavaScript这种将函数作为一等对象的语言里，策略模式已经融入到了语言本身当中，我们经常使用高阶函数来封装不同的行为，并且把它传递到另一个函数中。当我们对这些函数发出“调用”的消息时，不同的函数会返回不同的执行结果。所以在JavaScript中，“函数对象的多态性”会更加简单些。
+
+把复杂的运算封装到函数中，并对函数进行四处传递，实现算法的调用。
