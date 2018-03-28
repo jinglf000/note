@@ -65,6 +65,9 @@ productionTip:!1
 ```js
 obj || obj = {};
 obj && obj.context = {};
+codeABC && codeDEF // codeABC为true时才能执行codeDEF，用于 obj && obj.contain = {}
+
+codeABC || codeDEF // codeABC为true是codeDEF不执行，用于 obj || obj = {}
 ```
 5.2、`requestAnimationFrame(callback)` 跟随屏幕的刷新频率执行代码，类似于`setTimeout(callback)`
 
@@ -98,4 +101,20 @@ $('#id')[0] === document.getElementById('id') === document.querySelector('#id');
 ele.parentElement.removeChild(ele);// 前提是parentElement这个属性在浏览器里是实现的
 
 ```
+
+## 6、compiler编译
+
+vue-runtime版本是不含有compiler的，是不会把template 转换成renderFn，这也就要求vue实例或者component中模板必须是render函数；挂载时，`mount` 对应的与`src/platfoems/web/runtime/index.js`中的`$mount`函数。
+
+vue-runtime-compiler 含有compiler，因此会包含有compiler部分的代码，会把字符串模板编译成renderFn再来调用原来的`$mount`函数，存在着函数覆盖。
+
+
+问题：
+computed编译后为一个watcher
+date通过observe转换为了getter和setter 通过dep来收集依赖
+而依赖必须是watcher 	，会把template转换为watch，问题是一个模板里面有两个
+<p>{{a + b}}</p> <span>{{a}}</span> 会编译成几个watch？
+
+还是很复杂啊。。。
+
 
