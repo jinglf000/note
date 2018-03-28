@@ -53,3 +53,49 @@ productionTip:!1
 实际上在JavaScript这种将函数作为一等对象的语言里，策略模式已经融入到了语言本身当中，我们经常使用高阶函数来封装不同的行为，并且把它传递到另一个函数中。当我们对这些函数发出“调用”的消息时，不同的函数会返回不同的执行结果。所以在JavaScript中，“函数对象的多态性”会更加简单些。
 
 把复杂的运算封装到函数中，并对函数进行四处传递，实现算法的调用。
+
+**封装提取抽象**对于代码中复杂、重复的部分我们通过抽象，封装 用以实现代码的复用，实现代码清晰明了。
+**混合mixin**在复杂的框架中，会有好多预设的属性和方法，这时就会用到了属性合并，mixin混合，
+
+
+## 5、tips
+
+5.1、`||` `&&` 简化代码执行
+
+```js
+obj || obj = {};
+obj && obj.context = {};
+```
+5.2、`requestAnimationFrame(callback)` 跟随屏幕的刷新频率执行代码，类似于`setTimeout(callback)`
+
+要想实现动画，req需要循环去调用；参数为事件戳；
+```js
+var start = null;
+var element = document.getElementById('SomeElementYouWantToAnimate');
+element.style.position = 'absolute';
+
+function step(timestamp) {
+  if (!start) start = timestamp;
+  var progress = timestamp - start;
+  element.style.left = Math.min(progress / 10, 200) + 'px';
+  if (progress < 2000) {
+    window.requestAnimationFrame(step);
+  }
+}
+
+window.requestAnimationFrame(step);
+```
+5.3、DOM唯一性，
+无论用那种方式获取同一个DOM元素，都是获取的同一个DOM，并且DOM和标签是一一对应的。
+```js
+$('#id')[0] === document.getElementById('id') === document.querySelector('#id');// 真实代码不是对的，
+```
+
+在vue中，一旦组件挂载到DOM上，即便通过`parentElement.removeChild(vm1.$el)`移除对应的DOM，vue的响应式更新仍然存在。（通过vonsole 打印会发现值仍然在更新）只不过该DOM元素，没有在HTML页面上体现；反之这时使用`parentElement.removeChild(vm1.$el)`就能恢复DOM的显示状态。
+
+5.4、移除当前DOM元素
+```js
+ele.parentElement.removeChild(ele);// 前提是parentElement这个属性在浏览器里是实现的
+
+```
+
