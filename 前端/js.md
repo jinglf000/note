@@ -357,4 +357,65 @@ new Function(a, b, fnString); 的方式生成新的函数，调用函数即可
 ```
 模板中的预编译技术是指，对生成后的`function(...)`代码，其对应的变量都会提前声明好。
 
+### 18、JS API
+```js
+window.location === document.location;// true
+location.reload(true);// 强制刷新，不使用缓存。不传参数或为false；刷新使用缓存
 
+navigator.userAgent;// 用户代理字符串，用于判断客户端类型
+````
+对不同的浏览器兼容问题，处理方案；尽量避免使用兼容性不好的API，先设计通用的方案，然在使用特定于浏览器的技术增强方案
+node一些DOM节点的方法
+```js
+hasChildNodes();// 
+insertBefore(ele1,ele2);// 
+replaceChild();
+document.domain;// 通过设置domain可以解决在frame页面中，不同子域名的跨域问题
+```
+### 19、chrome 调试
+
+`F8` 跳到下一个断点
+`F10`单步调试，不进入方法
+`F11`单步调试，遇到Function进入方法单步
+
+### 20、vue transiton 
+
+![trasition对应的class](./imgs/transition.png)
+
+1.  `v-enter`：定义进入过渡的开始状态。在元素被插入时生效，在下一个帧移除。
+
+2.  `v-enter-active`：定义过渡的状态。在元素整个过渡过程中作用，在元素被插入时生效，在 `transition/animation` 完成之后移除。这个类可以被用来定义过渡的过程时间，延迟和曲线函数。
+
+3.  `v-enter-to`: **2.1.8版及以上** 定义进入过渡的结束状态。在元素被插入一帧后生效 (于此同时 `v-enter` 被删除)，在 `transition/animation` 完成之后移除。
+
+4.  `v-leave`: 定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。
+
+5.  `v-leave-active`：定义过渡的状态。在元素整个过渡过程中作用，在离开过渡被触发后立即生效，在 `transition/animation` 完成之后移除。这个类可以被用来定义过渡的过程时间，延迟和曲线函数。
+
+6.  `v-leave-to`: **2.1.8版及以上** 定义离开过渡的结束状态。在离开过渡被触发一帧后生效 (于此同时 `v-leave` 被删除)，在 `transition/animation` 完成之后移除。
+
+其中`v-enter-to`  `v-leave-to`会存在整个的transition-duration时间中，因此
+```css
+.fade-enter-active,
+.fade-leave-active {
+	transition:  all  ease  0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+	opacity:  0;
+	transition: scale(0, 0);// 能保证在进入动画时，fade-enter ===> fade-enter-to 为方法动画
+}
+	// 
+.fade-enter-to,
+.fade-leave {
+	opacity:  1;
+	transition: scale(1, 1);
+}
+```
+> http://ds-overdesign.com/transform/matrix.html
+
+在线的变换
+使用transition：的多个属性变换的时，使用`metrix`更好些
+
+****
