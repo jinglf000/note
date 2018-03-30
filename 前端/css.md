@@ -91,7 +91,29 @@ http://math2.org/math/algebra/functions/sincos/properties.htm
 `:visited`  表明该标签已经访问过，无论放置的位置如何，其优先级高于`:link`
 前两类表明了链接的状态，未被访问过和已访问过
 
-`:active` 点击时，从触发情况来看，active在hove之后
 `:hover` 悬浮到a链接上
+`:active` 点击时，从触发情况来看，active在hove之后
 后两类描述了a链接的交互状态，悬浮时或者点击时；因此书写样式时，为了能让样式更好的展现，active要方到hover后面，并且两者都要放到 link和visited后面；
+
+### 9、border-image 
+
+> http://www.zhangxinxu.com/wordpress/2010/01/css3-border-image/
+
+
+关于`border-image`内容参考以上。用到为三个属性：url() 表示图片地址， 数字slice 表示裁切位置，stretch 、repeat、round。表示重复性；
+`border-image`和`background-image`属性表示很相似，只是`border`涉及到图片的裁切，而背景图是指图片的位置偏移。
+```css
+border-image: url('./i/img.png') 30 round;
+```
+
+### 10、移动端适配
+
+> vw移动端适配： https://www.w3cplus.com/css/vw-for-layout.html
+> 在Vue项目中使用vw：https://www.w3cplus.com/mobile/vw-layout-in-vue.html
+
+- 解决`retain`屏下的1px的边框的问题
+- 使用`vw vh vmin vmax`单位解决移动端适配的问题
+- `vw`解决方案、现有的项目组件和weui样式整合
+
+
 
