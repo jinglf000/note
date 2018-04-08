@@ -419,3 +419,16 @@ document.domain;// 通过设置domain可以解决在frame页面中，不同子�
 使用transition：的多个属性变换的时，使用`metrix`更好些
 
 ****
+
+### 21、== 运算
+> 引用自： https://zhuanlan.zhihu.com/p/21650547
+
+**结论**
+前面说得很乱，根据我们得到的最终的图3，我们总结一下==运算的规则：
+
+*   **undefined == null**，结果是**true**。且它俩与所有其他值比较的结果都是**false**。
+*   **String == Boolean**，需要两个操作数同时转为Number。
+*   **String/Boolean == Number**，需要String/Boolean转为Number。
+*   **Object == Primitive**，需要Object转为Primitive(具体通过**valueOf**和**toString**方法)。
+
+瞧见没有，一共**只有4条规则**！是不是很清晰、很简单。
