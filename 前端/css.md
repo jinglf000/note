@@ -64,29 +64,28 @@ http://math2.org/math/algebra/functions/sincos/properties.htm
 ![bfc实例](./imgs/bfc.png)
 
 ### 6、关于BFC（Block Formating Contexts）块级格式化上下文
-> **块格式化上下文（Block Formatting Context，BFC）** 是Web页面的可视化CSS渲染的一部分，是布局过程中生成块级盒子的区域，也是浮动元素与其他元素的交互限定区域。
+> 什么是BFC：**块格式化上下文（Block Formatting Context，BFC）** 是Web页面的可视化CSS渲染的一部分，是布局过程中生成块级盒子的区域，也是浮动元素与其他元素的交互限定区域。是浏览器的渲染机制
 https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context
 
-
-
-只要元素满足下面任一条件即可触发 BFC 特性：
+什么元素会触发BFC特性：只要元素满足下面任一条件即可触发 
 *	body 根元素
 *	浮动元素：float 除 none 以外的值
 *	绝对定位元素：position (absolute、fixed)
 *	display 为 inline-block、table-cells、flex
 *	overflow 除了 visible 以外的值 (hidden、auto、scroll)
 
-特性：
+BFC元素有什么特性：
 1.  内部的Box会在垂直方向，从顶部开始一个接一个地放置。
 2.  Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生叠加，两个相邻的box可以是父子元素也可以是兄弟元素。
 3.  每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。
 4.  BFC的区域不会与float box叠加。
-5.  BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然。
+5. ** BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然。**
 6.  计算BFC的高度时，浮动元素也参与计算。
 
 
-详细见： https://zhuanlan.zhihu.com/p/25321647
+详细见：
 http://www.html-js.com/article/1866
+https://zhuanlan.zhihu.com/p/25321647
 https://www.w3cplus.com/css/understanding-bfc-and-margin-collapse.html
 
 ### 7、一些兼容性的问题
