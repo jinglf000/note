@@ -441,3 +441,25 @@ document.domain;// 通过设置domain可以解决在frame页面中，不同子�
 *   **Object == Primitive**，需要Object转为Primitive(具体通过**valueOf**和**toString**方法)。
 
 瞧见没有，一共**只有4条规则**！是不是很清晰、很简单。
+
+### 22、base64 图片 浏览器下载
+* 在IE系列和Edge中不适用；
+* 原理是`<a href="url或者base64图片" download="filename">`点击即可下载；程序所要做的就是拼上这些字符特性，模拟点击
+```js
+  // data 为base64码，通过dispatchEvent派发自定义事件
+  var  $a  =  document.createElement('a');
+  var  type  =  getFileType(data);
+  $a.download  =  fileName  +  '.'  +  type;
+  $a.target  =  '_blank';
+  $a.href  =  data;
+
+  // for chrome and firefox
+  var  event  =  new  MouseEvent('click',  {
+      view:  window,
+      bubbles:  true,
+      cancelable:  false
+    });
+
+    $a.dispatchEvent(event);
+
+ ```
