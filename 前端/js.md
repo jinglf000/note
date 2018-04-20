@@ -463,3 +463,28 @@ document.domain;// 通过设置domain可以解决在frame页面中，不同子�
     $a.dispatchEvent(event);
 
  ```
+
+### 23、node_js node 调试
+http://www.ruanyifeng.com/blog/2018/03/node-debugger.html
+
+### 24、事件循环 eventLoop
+
+Node.js 事件循环概念：
+> "When Node.js starts, it initializes the event loop, processes the provided input script which may make async API calls, schedule timers, or call process.nextTick(), then begins processing the event loop."
+
+nodeJs 程序在开始执行时，在执行会完成一下事情：
+* 执行同步任务
+* 发送异步请求
+* 规划定时器生效时间
+* 执行`process.nextTick()`
+
+在事件循环时执行步骤为：
+* 同步任务
+* process.nextTick();
+* 微任务microTask
+
+process.nextTick和Promise的回调函数，追加在本轮循环，即同步任务一旦执行完成，就开始执行它们。而setTimeout、setInterval、setImmediate的回调函数，追加在次轮循环。
+
+Node 执行完所有同步任务，接下来就会执行process.nextTick的任务队列；执行完nextTick队列之后，会执行微任务队列；微任务队列执行完成之后，会执行下一轮事件循环；
+
+
