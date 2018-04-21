@@ -63,3 +63,15 @@ path模块中没有对window路径和linux的转换方法，需要自己转换�
 要想在任何操作系统上处理 Windows 文件路径时获得一致的结果，可以使用 path.win32：
 要想在任何操作系统上处理 POSIX 文件路径时获得一致的结果，可以使用 path.posix：
 
+
+QUESTION: 转换后路径的分隔符变了
+```
+const path = require('path');
+// const dir = "e:/github/gulp/src";
+// const src = "./include/test.html";
+const dir = "e:/github/gulp/src/a/b/include";
+const src = "../../../styles/images/add.png";
+let res = path.join(dir, src);
+console.log(res); // e:\github\gulp\src\styles\images\add.png
+```
+
