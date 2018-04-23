@@ -487,4 +487,6 @@ process.nextTick和Promise的回调函数，追加在本轮循环，即同步任
 
 Node 执行完所有同步任务，接下来就会执行process.nextTick的任务队列；执行完nextTick队列之后，会执行微任务队列；微任务队列执行完成之后，会执行下一轮事件循环；
 
-
+### 25、window.open
+`window.open`成功打开页面会返回对新页面的引用（也是window对象，假定返回值为win），失败返回 null??
+当新页面刷新，跳转，关闭的时候会触发`unload`。通过监控`win`的`unload`事件，可以在新页面发生上述变化时做一些对应的处理。
