@@ -500,15 +500,15 @@ var error = (window.console && window.console.error) || alert;
 ### 28、form 中的按钮和输入项
 ```js
 <form action="">
-		<input type="text">
-		<input type="text">
-		<button  class="btn">dianjai </button>
-	</form>
-	<button  class="btn">dianjai </button>
-	<script>
-		var btn = document.querySelector('.btn');
-		btn.addEventListener('click', function (e) {
-			console.log('点击了了 了~', e);
-		});
-	</script>
+    <input type="text">
+    <input type="text">
+    <button  class="btn">dianjai </button>
+</form>
+<button  class="btn">dianjai </button>
+<script>
+    var btn = document.querySelector('.btn');
+    btn.addEventListener('click', function (e) {
+        console.log('点击了了 了~', e);
+    });
+</script>
 ```
