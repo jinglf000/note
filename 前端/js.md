@@ -490,3 +490,9 @@ Node 执行完所有同步任务，接下来就会执行process.nextTick的任�
 ### 25、window.open
 `window.open`成功打开页面会返回对新页面的引用（也是window对象，假定返回值为win），失败返回 null??
 当新页面刷新，跳转，关闭的时候会触发`unload`。通过监控`win`的`unload`事件，可以在新页面发生上述变化时做一些对应的处理。
+
+### 26、IE8 下兼容console处理
+```js
+// 开发错误提示，使用window.console，即便使用typeof console在IE下也会报错
+var error = (window.console && window.console.error) || alert;
+```
