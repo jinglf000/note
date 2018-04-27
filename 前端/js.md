@@ -512,3 +512,20 @@ var error = (window.console && window.console.error) || alert;
     });
 </script>
 ```
+情况如下，在input上回车是否会提交表单，focus按钮上时，空格和回车会不会触发click事件
+1、form中单个input
+2、form多个input
+3、form中多个input，有按钮的情况下
+
+### 29、if else if 、switch流程控制语句
+从上到下程序执行时，只会进入流程控制语句中的一条，而不会同时进入多条；（写法合规的情况下）
+即便同时满足不同的分支条件，只会进入第一个分支，而不会进入第二个分支；分支语句会进入最近的一条满足条件的语句
+```js
+var x = 8;
+if (x < 10) {
+  console.log(' one ');
+} else if(x < 11) {
+  console.log(' two');
+}
+
+```
