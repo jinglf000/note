@@ -75,3 +75,28 @@ let res = path.join(dir, src);
 console.log(res); // e:\github\gulp\src\styles\images\add.png
 ```
 
+### 3、cheerio 包
+
+cheerio 能够在Node端模拟jQuery的DOM实现，并且cheerioDOM 本身特性和原生的DOM特性是一致的。
+下一变量`dom`指的是`cheerioDOM`cheerio实现的DOM
+譬如：DOM的唯一性，当往body里面添加元素时，`$('body').append(dom)`那么原来`dom`中含有的cheerioDOM就不在存在了
+本次对`dom`进行属性的修改，在次调用时，`dom`的属性就是修改过的了；
+在解析html字符串时，`cheerio`会把`script link`放到head里，元素标签方到body里；
+```js
+const $ = cheerio.load('<h3>sss</h3>');
+```
+```js
+const cheerio = require('cheerio');
+
+let str = `
+	<link href="./base.css"></link>
+	<script src="./base.js"></script>
+	<h3>dsds</h3>
+`
+const $ = cheerio.load(str);
+console.log($.html());
+//解析结果： <html><head><link href="./base.css">
+        <script src="./base.js"></script>
+        </head><body><h3>dsds</h3>
+</body></html>
+```
