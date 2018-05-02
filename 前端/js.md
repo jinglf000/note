@@ -529,3 +529,26 @@ if (x < 10) {
 }
 
 ```
+
+### 30、数字进制问题产生的bug
+先来一段代码
+```js
+console.log(01 === 1);//  true
+console.log(07 === 7); // true
+console.log(017 === 17); // false
+console.log(017 === 15); // true
+console.log(018 === 16); // false
+console.log(018 === 18); // true
+
+(function () {
+	'use strict'
+	console.log(01 === 1);//  SyntaxError: Octal literals are not allowed in strict mode.
+	console.log(017 === 17);//
+})();
+
+```
+
+规则：在非严格模式下，八进制的数字表达是允许的；因此`017 === 17`为`false`;但是对于`018`不符合八进制，因此会被认为是十进制；
+在严格模式下，或者在ES6下，八进制的表达方式都是不被允许的；编译时就会出错。程序根本不会运行。
+
+原始的问题：在artTemplate的使用的时候，由于传入的数据为`01`的类型，在执行`new Function`操作的时候，由于内部有`use strict `语句因此，会出现`SyntaxError: Octal literals are not allowed in strict mode.`的语法错误；
