@@ -552,3 +552,6 @@ console.log(018 === 18); // true
 在严格模式下，或者在ES6下，八进制的表达方式都是不被允许的；编译时就会出错。程序根本不会运行。
 
 原始的问题：在artTemplate的使用的时候，由于传入的数据为`01`的类型，在执行`new Function`操作的时候，由于内部有`use strict `语句因此，会出现`SyntaxError: Octal literals are not allowed in strict mode.`的语法错误；
+
+`012` 会被解析成八进制
+`0x25` 会被解析成十六进制
