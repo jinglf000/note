@@ -552,3 +552,10 @@ console.log(018 === 18); // true
 在严格模式下，或者在ES6下，八进制的表达方式都是不被允许的；编译时就会出错。程序根本不会运行。
 
 原始的问题：在artTemplate的使用的时候，由于传入的数据为`01`的类型，在执行`new Function`操作的时候，由于内部有`use strict `语句因此，会出现`SyntaxError: Octal literals are not allowed in strict mode.`的语法错误；
+
+### 31、jquery的add 方法
+```js
+var $div = $('div');
+var $list = $div.add('p');
+```
+本例中 `add` 返回新的包含有 `p` 的jquery集合，并且并未对 `$div` 进行修改；
