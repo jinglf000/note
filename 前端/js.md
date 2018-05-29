@@ -372,10 +372,10 @@ window.location === document.location;// true
 location.reload(true);// 强制刷新，不使用缓存。不传参数或为false；刷新使用缓存
 
 navigator.userAgent;// 用户代理字符串，用于判断客户端类型
-````
+​````
 对不同的浏览器兼容问题，处理方案；尽量避免使用兼容性不好的API，先设计通用的方案，然在使用特定于浏览器的技术增强方案
 node一些DOM节点的方法
-```js
+​```js
 hasChildNodes();// 
 insertBefore(ele1,ele2);// 
 replaceChild();
@@ -462,7 +462,7 @@ document.domain;// 通过设置domain可以解决在frame页面中，不同子�
 
     $a.dispatchEvent(event);
 
- ```
+```
 
 ### 23、node_js node 调试
 http://www.ruanyifeng.com/blog/2018/03/node-debugger.html
@@ -552,6 +552,13 @@ console.log(018 === 18); // true
 在严格模式下，或者在ES6下，八进制的表达方式都是不被允许的；编译时就会出错。程序根本不会运行。
 
 原始的问题：在artTemplate的使用的时候，由于传入的数据为`01`的类型，在执行`new Function`操作的时候，由于内部有`use strict `语句因此，会出现`SyntaxError: Octal literals are not allowed in strict mode.`的语法错误；
-
 `012` 会被解析成八进制
 `0x25` 会被解析成十六进制
+
+
+### 31、jquery的add 方法
+```js
+var $div = $('div');
+var $list = $div.add('p');
+```
+本例中 `add` 返回新的包含有 `p` 的jquery集合，并且并未对 `$div` 进行修改；
