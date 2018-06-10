@@ -69,10 +69,10 @@ https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context
 
 什么元素会触发BFC特性：只要元素满足下面任一条件即可触发 
 *	body 根元素
-*	浮动元素：float 除 none 以外的值
-*	绝对定位元素：position (absolute、fixed)
-*	display 为 inline-block、table-cells、flex
-*	overflow 除了 visible 以外的值 (hidden、auto、scroll)
+		浮动元素：float 除 none 以外的值
+		绝对定位元素：position (absolute、fixed)
+		display 为 inline-block、table-cells、flex
+		overflow 除了 visible 以外的值 (hidden、auto、scroll)
 
 BFC元素有什么特性：
 1.  内部的Box会在垂直方向，从顶部开始一个接一个地放置。
@@ -127,5 +127,8 @@ border-image: url('./i/img.png') 30 round;
 ### 11、事件系统
 
 
+### 12、width 100%
+
+页面骨架为**1200px**的情况下，最外层的样式`all`设置要设置最小宽度：`min-width:1200px`，单独设置`width:100%;`的话在页面宽度过小的时候（小于1200px时），样式`all`能拿到的样式是浏览器当前宽度，就会在页面部分出现空白。
 
 
