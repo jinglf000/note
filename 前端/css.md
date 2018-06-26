@@ -131,4 +131,11 @@ border-image: url('./i/img.png') 30 round;
 
 页面骨架为**1200px**的情况下，最外层的样式`all`设置要设置最小宽度：`min-width:1200px`，单独设置`width:100%;`的话在页面宽度过小的时候（小于1200px时），样式`all`能拿到的样式是浏览器当前宽度，就会在页面部分出现空白。
 
+### 13、使用
+```
+width: 62%;
+word-wrap:break-word;
+align-items: center;
+```
+
 

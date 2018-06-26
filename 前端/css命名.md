@@ -25,10 +25,10 @@
 | 确认框 | confirm |激活状态|active|按钮|btn|
 | 视图 | view |悬浮|hover|条|bar|
 | 容器 | container |原始信息|meta|加载|loading|
-| 头部 | header |动作|action|||
-| 主题 | logo |行|row|||
-| 导航 | nav/navigation |列|col|||
-| 搜索 | search |喜好|like|||
+| 头部 | header |动作|action|指南|guide|
+| 主题 | logo |行|row|描述|description|
+| 导航 | nav/navigation |列|col|注释|comment|
+| 搜索 | search |喜好|like|备注|remark|
 | 添加 | add |评论|comment|||
 | 消息 | notification |数量|count|||
 | 表单 | form |收藏|collect|||
