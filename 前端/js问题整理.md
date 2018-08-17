@@ -62,3 +62,5 @@ may be delete. In my vue project , Use this is efficient
 ...
  /*! autoprefixer: on */
 ```
+
+### 5、如何实现根据不同的网络状态下载不同清晰度的照片
