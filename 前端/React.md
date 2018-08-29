@@ -5,6 +5,7 @@
 * JSX comes with the full power of JavaScript. 拥有全部的js能力。
 * You can put *any* JavaScript expressions within braces inside JSX. 你可以把任何JavaScript表达式放在JSX的大括号里面。甚至是函数声明。
 * Each React element is a JavaScript object that you can store in a variable or pass around in your program. jsx中的x或者说是类似于div的标签这些语法，在js里面可以当做为一个React element的js对象。
+* JSX语法的最外层，只能有一个节点。
 * 大括号里面的this指向的是当前组件的实例。
 
 ## 2、react 的一些规定
