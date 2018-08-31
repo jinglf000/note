@@ -19,4 +19,5 @@
 * `Functional Components` and `Controled Components`
 * 数据更新的方式，使用整体更新，而不是类似于Vue的单个更新。不要改变原始数据，原始数据用于保存成历史记录；
 * `key ref`为react中的保留property，在列表中使用key来标记列表中的唯一元素。
+* 必须使用`setState`方法去更改组件的state，这样修改state之后react会自动的以最优化的方式更新视图
 

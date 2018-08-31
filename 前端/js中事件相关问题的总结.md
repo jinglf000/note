@@ -3,6 +3,7 @@
 > Event接口表示在DOM中发生的任何事件; 一些是用户生成的（例如鼠标或键盘事件），而其他由API生成(例如指示动画已经完成运行的事件，视频已被暂停等等)。有许多类型的事件，其中一些使用基于主要事件接口的其他接口。事件本身包含所有事件通用的属性和方法。
 > 更详细的介绍 https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Building_blocks/Events
 > 观察者模式和订阅-发布模式（Observe and Publish-Subscribe Pattern）
+>
 > -  在观察者模式中，观察者是知道Subject的，Subject一直保持对观察者进行记录。然而，在发布订阅模式中，发布者和订阅者不知道对方的存在。它们只有通过消息代理进行通信。
 
 > - 在发布订阅模式中，组件是松散耦合的，正好和观察者模式相反。
@@ -85,4 +86,5 @@ $(document).on('click', '.box', function () {
 - 2、将目标元素换成 a 或者 button元素；
 - 3、将 click 事件委托到非 document 或 body 的父级元素上；
 - 4、给目标元素加一条样式规则 cursor: pointer。
-
+## 5、浏览器的 eventLoop
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop
