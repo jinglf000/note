@@ -77,6 +77,10 @@ DOM 中的值client(本身)，offset(偏移)，scroll(滚动)
 
 **Promise**
 Promise 中一旦执行了resolve或者reject，Promise本身的状态就会发生改变，并且不能再次改变；
+如果在resolve之前，程序运行出了错误，那么该运行错误会把promise的状态改编为 reject；
+如果在resolve 或者 reject 之后运行的错误，由于此时的promise的状态已经发生变化，而promise不会状态不会在次改变，
+所以该错误不会被catch或者then 捕获到。
+
 Promise 构造函数中的错误可以被其后的catch捕获到；
 以下情况不能捕获到，程序会在执行到`aaa * 1`就报错，并且不会调用then回调
 ```
@@ -229,6 +233,7 @@ ans：要想正确的打开一个文件，必须知道文件的编码方式，�
 
 ### 12、对象的valueOf toString方法
 对象的`valueOf`方法能够返回对象的**原始值**（primitive），默认情况下object的原始值是对象本身，对一些js中的核心对象，返回值又各有各的不同
+
 | 对象| 返回值 |
 |---|---|
 | Array | 返回数组对象本身。 |
