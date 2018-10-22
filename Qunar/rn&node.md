@@ -1,4 +1,4 @@
-##携程金融RN 项目
+##携程金融RN 项目
 
 ### 1、项目文档
 
@@ -85,33 +85,6 @@ extend // 扩展
 middleware // koa的中间件
 
 service // 访问数据库、接口的业务处理。其中访问第三方的服务也是会封装到这里`proxy.js`
-
-### 7、线上发布流程
-
-http://wiki.corp.qunar.com/confluence/pages/viewpage.action?pageId=217055598 登陆方式
-
-
-
-先登陆跳板机 --- > 在登陆发布机器
-
---> 配置RNapp应用地址
-
-```shell
-ssh scar.jing@l-rtools1.ops.cn0 // cn0 的跳板机地址，使用ssh
-ssh l-finprimary3.pay.beta.cn0 // 部署的服务地址，可以查看服务器内容，日志，
-// 
-
-```
-
-Node 服务调试地址：
-
-```
-/home/q/www/finance_primary_node   // home q www 目录 --- 后面就是项目名称
-/webapp 项目代码
-/logs 日志
-/logs tail -f common-error.log // 异常日志
-/logs tail -f finance_primary_node-web.log // 请求日志
-```
 
 
 
