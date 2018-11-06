@@ -1,6 +1,4 @@
 # note
 some note
 
-
-
-推进了团队的自动化开发，开发了基于gulp的脚手架工具，提高了前端代码的复用和前后台联调的效率；引进了doclevel（接口文档管理工具）规范了接口的管理方式，降低了前后台沟通的成本；推广了vue并根据项目需求封装了一套移动端开发模板。
+markdown语法指南 [地址](https://www.zybuluo.com/mdeditor?url=https%3A%2F%2Fwww.zybuluo.com%2Fstatic%2Feditor%2Fmd-help.markdown)

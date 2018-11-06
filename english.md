@@ -1,2 +1,0 @@
-synopsis 概要
-

@@ -59,7 +59,7 @@ esc // 退出insert模式，改为normal模式
 
 #### 5、使用 React Native Debugger 调试RN项目，关闭既有的调试方式 浏览器
 
-JS Bundle 价值方式 ---> 
+JS Bundle 加载方式 ---> 
 
 服务地址：localhost:8081 同时使用switchHost 设置host 为本地
 
