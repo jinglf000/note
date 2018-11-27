@@ -2,19 +2,14 @@
 
 ### 1、项目文档
 
-项目结构 RN <------rn和Node进行接口交互------> Node <——Node和java后台交互 ----->java
+1. 项目结构 RN <------rn和Node进行接口交互------> Node <——Node和java后台交互 ----->java
+
 
 RN层负责：页面的数据渲染（状态层使用redux，渲染层使用RN，交互使用RN对应的事件）
 
 Node层负责：页面的接口的聚合，合并多个接口为一个，输出到前台。BFF（在Qconfig中同样可以配置相应的参数，使用node来进行访问）；
 
 JAVA层负责：真正的业务逻辑。
-
-[Qconfig 配置中心](http://tc.corp.qunar.com/webapp/#/qconfig/ft_finprimary/dev:/testft_finprimary.json?groupName=ft_finprimary&status=PASSED&basedVersion=0&editVersion=2&canEdit=true) 用于配制
-
-[pmo 项目管理](http://pmo.corp.qunar.com/browse/FINANCE-11374)
-
-[wiki接口地址](http://wiki.corp.qunar.com/confluence/pages/viewpage.action?pageId=214799547)
 
 
 

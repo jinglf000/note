@@ -23,7 +23,7 @@ man command line // 使用man + 命令，输出命令使用指南，可以使用
 如果你想将当前 command line 会话切换到其他目录，需要用到三个命令：`pwd`，`ls`和`cd`。
 
 1. `pwd`的含义是“print working directory”，会显示当前目录的绝对路径。
-2. `ls`的含义是“list directory contents”，它会列出当前目录的内容。这个命令还有其他参数可选。
+2. `ls`的含义是“list directory contents”，它会列出当前目录的内容。这个命令还有其他参数可选。`ls -l`列出所有文件，包含相信信息；
 3. `cd`的含义是“change directory”，它会改变当前目录到你指定的目录。如果你不指定，则会返回你的 home folder。
 4. cat 查看文件
 5. less 使用和 man的方式查看文件，which 查看命令所在的位置
@@ -66,4 +66,22 @@ sudo
 - 你 也可以使用history命令查看历史记录。
 -  你可以使用组合键control + L清屏
 
+#### 日志处理
 
+```shell
+tail -f <file name> // 查看日志文件内容
+grep 'keyWord' <file name> // 根据关键字搜索文件中的内容
+zgrep 'keyWord' <file name> // 根据关键字搜索压缩文件内容
+```
+
+### 2、MAC APP
+* MindNode  思维导图 XMind ZEN 
+* Scroll Reverser 鼠标反向
+* Switch hosts 切换host
+* React Native Debugger 
+* sublime 文本编辑
+* Charlse 抓包
+* Typora md
+* postman 
+* [JSUI]([https://github.com/kitze/JSUI/releases/tag/v0.0.18](applewebdata://4A1BB12E-133D-4895-8CCE-CD8BA797EBC9/aa))
+* 
