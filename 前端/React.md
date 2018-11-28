@@ -32,7 +32,9 @@
 
   RN项目里面使用的东西：内容主要在redux中，state使用了`fromJs`把普通的js对象转换为不可变对象，因此获取的时候需要使用`toJS`，同时在获取值渲染的时候使用了`reselect`使得计算后的数据能够缓存。
 
-- React lifecycle [生命周期](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+- React lifecycle 官方 [生命周期](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+
+- React ，在class 类型组价时，使用箭头函数 this处理，
 
 ## RN
 - 
