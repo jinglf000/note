@@ -1,9 +1,13 @@
 # css
+
+[TOC]
+
 ## 由css的transform：rotate引发的一系列的问题
 > 一些资料
-1、有关于transform的matrix详见：张鑫旭css
-http://www.zhangxinxu.com/wordpress/2012/06/css3-transform-matrix-%E7%9F%A9%E9%98%B5/
-* transform:translate(x,y)  ---> transform: matrix(1,0,0,1,x,y);
+> 1、有关于transform的matrix详见：张鑫旭css
+> http://www.zhangxinxu.com/wordpress/2012/06/css3-transform-matrix-%E7%9F%A9%E9%98%B5/
+>
+> * transform:translate(x,y)  ---> transform: matrix(1,0,0,1,x,y);
 * transform:scale(x,y) ---> transform:maxtrix(x,0,0,y,0,0);
 * transform:rotate(θ) ---> matrix(cosθ,sinθ,-sinθ,cosθ,0,0);
 * transform:skew(x + 'deg', y + 'deg') ---> matrix(1,tan(θy),tan(θx),1,0,0);
@@ -131,11 +135,17 @@ border-image: url('./i/img.png') 30 round;
 
 页面骨架为**1200px**的情况下，最外层的样式`all`设置要设置最小宽度：`min-width:1200px`，单独设置`width:100%;`的话在页面宽度过小的时候（小于1200px时），样式`all`能拿到的样式是浏览器当前宽度，就会在页面部分出现空白。
 
-### 13、使用
+### 13、连续的英文中文字符，超出文本框的问题
 ```
 width: 62%;
-word-wrap:break-word;
+word-break:break-all;// 使用该属性
 align-items: center;
 ```
 
 
+### 14、less 修改颜色的不透明度
+```less
+@color: #ff0000;
+// 想得到对应颜色 80% 20% 10% 的透明度
+color: fade(@color, 80%);// 
+```

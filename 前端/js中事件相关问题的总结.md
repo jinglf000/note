@@ -88,3 +88,13 @@ $(document).on('click', '.box', function () {
 - 4、给目标元素加一条样式规则 cursor: pointer。
 ## 5、浏览器的 eventLoop
 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop
+
+
+## 6、派发自定义事件
+
+```js
+document.addEventListener('customeEvent', fn, false);// 绑定事件处理
+document.removeEventListener('customeEvent', fn);// 移除对应事件
+var event = new CustomEvent('customeEvent', { detail: {}})// 创建自定义事件对象，并在event.detail属性上添加自定义数据，以供回调函数使用；
+document.dispatchEvent(event);// 派发自定义事件，这时绑定的事件处理就会触发了
+```

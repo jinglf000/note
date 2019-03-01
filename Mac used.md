@@ -1,3 +1,7 @@
+## MAC 
+
+[TOC]
+
 ### 1、Mac commend 命令行
 
 https://www.cnblogs.com/hopelee/p/7049551.html
@@ -74,6 +78,12 @@ grep 'keyWord' <file name> // 根据关键字搜索文件中的内容
 zgrep 'keyWord' <file name> // 根据关键字搜索压缩文件内容
 ```
 
+#### 端口进程
+查看进程占用，获取进程PID
+` lsof -i tcp:3000`
+杀死进程，杀死对应PID
+`kill pid`
+
 ### 2、MAC APP
 * MindNode  思维导图 XMind ZEN 
 * Scroll Reverser 鼠标反向
@@ -85,3 +95,6 @@ zgrep 'keyWord' <file name> // 根据关键字搜索压缩文件内容
 * postman 
 * [JSUI]([https://github.com/kitze/JSUI/releases/tag/v0.0.18](applewebdata://4A1BB12E-133D-4895-8CCE-CD8BA797EBC9/aa))
 * 
+
+### 3、搜狗输入法 繁体简体切换
+* 快捷键 shift + ctrl + f 切换
