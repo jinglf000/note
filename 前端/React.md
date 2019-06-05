@@ -48,15 +48,7 @@
 
 > Use refs sparingly. If you find yourself often using refs to “make things happen” in your app, consider getting more familiar with top-down data flow.
 
-* React 和 Vue；Vue中约定使用data保存组件状态，并实现从数据（data）到视图（view）之前的响应式的映射`view = f(data)`；但从data 到 view 是一个异步关系，而data的更新是同步直接更新；React 中使用state保存组件状态，同样也实现了data到view之间个响应式更新；虽然data --> view和Vue一 是异步更新，但data 本身的更新（使用setState）则是异步的；所以在一下场景中需要不同的写法；
-
-  ```html
-  <Select onSelect={(v) => { this.data / this.state}} value={value}></Select>
-  ```
-
-  假定Vue和React都有对应的组件，在Vue组件中 onSelect 函数中的，this.data 能够拿到select 组件的新值；
-
-  但是在React组件中，onSelect 通过函数传值能够拿到最新的值，但是this.state 值得变化则要在 setState异步之后才会更新；所以可以理解为对于React来说，只会维护视图层。获取值得时候需要特别注意。
+* 
 
 * A -> B -> C 三层组件调用关系中，（A是B的父组件，B是C的父组件）其中Render函数的触发顺序为：A -> B ->C，正是由于父组件render的调用，才会触发子组件的render；componentDidMounted钩子触发顺序 C -> B ->A，在A组件完成之后，能够获取到整个组件的DOM结构；
 
@@ -83,13 +75,13 @@
 
 * 6、**dva**框架，是 React react-ruoter redux redux-saga 的一层轻量封装；精简了操作，做出了一些了的约定，而成为了一个框架；（这也就是约定优于配置，框架）；其中`state effects reducers subscriptions`   。subscriptions 的存在提供了一种全局的订阅方式，用于处理state之外的数据变化。齐结构是：
 
-* ```
+```
   subscriptions:{
       abc() {
           return fn;
       }
   }// subscriptions 里面的函数会运行，每个函数都会返回一个函数用于取消数据绑定
-  ```
+```
 
 * Components 组件应该是包含内部状态且无业务逻辑的，通过派发外部事件响应结果
 
@@ -105,11 +97,12 @@
 * 文件夹里多个组件使用 index.js 导出，使用文件夹区分不同组件，且文件夹中的主文件名和文件夹一致
 * Form 表单和输入元素，有两种处理策略；表单的通常需求有：输入、回显、校验；
   * 以antd提供的组件来看，校验由`Form`组件提供，并配合高阶组件`getFieldDecorator`提供校验功能；简单一点 非控制组件无法存值；控制组件可以保存值；控制组件把组件的控制权上报给父组件管理，无论是否使用，父组件必须适配好组件需要的所有方法；非受控组件，一次性赋值使用。只关心第一次输入的值，和交互的输出值；
-  * unControlled   非控制组件，通常适合于低频多级菜单的选择；通过传入defaultValue（react本身会对input元素上的defaultVlaue进行处理，设置为默认值）设置初始值，通过事件监听获取真实值；（初始值得获取，只能设置组件初次加载时，设置在组件加载完成之后，即便发生变化也不会更新）（多次使用时，而不销毁组件时，组件会保留上一次的值，并且此时defaultValue设置无效）；
+  * unControlled   非控制组件，通常适合于低频多级菜单的选择；通过传入defaultValue（react本身会对input元素上的defaultVlaue进行处理，设置为默认值）设置初始值，通过事件监听获取真实值；（初始值得获取，只能设置组件初次加载时，设置在组件加载完成之后，即便发生变化也不会更新）（多次使用时，而不销毁组件时，组件会保留上一次的值，并且此时defaultValue设置无效）；defaultValue 只有在表单元素重新挂载的时候才会设置，也意味着多次render时，deafultValue可能是不会生效的；
   * Controlled 控制组件，通过设置value属性设置元素的值，通过事件监听获取真实值；问题是必须在事件监听是更新该值，否则组件无法正常显示当前输入的值。好处value值发生变化，显示就会立即变化。（获取值后即可通过，重复设置value值来清空选择。缺点是和defaultValue不肯同时使用，适合于需要回显的输入场景）
 * react-router中使用browserHistory，但是项目部署时有一个统一的路径前缀？原来的路由为hash路由，如`www.abc.com/project#/pageA`  要改成 `www.abc.com/project/pageA` 并且由于项目的问题project路径参数为项目固定参数，项目没有独立的域名；项目中有很多`history.push('/xxx')`路径写法；
   * 解决办法：reactRouter实现中依赖了history，在使用histroy时，实例化了一个对象，并在对象上绑定事件（hisroty.before）以监听url变化，路由更新组件发生变化；在使用history实例时，通常情况下使用的是reactRouter本身的默认history对象，对于上面这种情况，就可以自己初始化一个自定义的history对象，以供reactRouter使用；
 * `<div data-id="123"></div>` 可以使用 `DOM.dataset.id` 获取到；并且还可以通过dataset进行赋值操作；注意一点无论赋值时是什么类型的值，取值操作时，取到的值都是字符串类型的值；可以认为在赋值时做了一下toString的操作；
+* `componentDidUpdate(prevProps, prevState,snapshot )` 可以在didUpdate里处理更新操作，但是要注意在其中的`setState`操作一定要有条件判断，否则会出现死循环。
 
 ## 6、Redux
 #### 6.1 概念
@@ -158,3 +151,114 @@ reducers;// 纯函数 输入prevState 输出 新的state；(state是不可变的
 ```
 
 函数中返回函数最大的作用在于，由于闭包的存在所以返回的函数能够使用原函数的输入参数；高阶函数，高阶组件（运用函数返回一个组件）；
+
+#### 6.3 dva 开发框架
+* modal里声明的state、reducers、effects、subscriptions会放置在全局的 state里面；即便切换了路由，渲染了对应的不同的页面组件，只要页面未重新加载其他路由中的数据依然存在；
+* 通过受控组件（controlled）的方式，在state组件中设置默认值；而不是通过设置default字段；减少需要判断的字段；
+* 查询条件数值发生变化时直接更新到state，消费获取字段时，直接通过`select(s => s[namespace])`获取，而不是payload，传来传去；保证完整的数据周期，一个周期内只做一件事情；
+* effect 中的call是一个promise的执行器，使用`yiled call()` `call` 第一个参数是能够返回promise的函数，第二个参数 给定一个函数传递参数；
+* 尽可能的使用`select` 来获取对应的值，而不是通过payload 来传递值，最大程度上保证函数是高内聚的；减少传递参数造成的负担；参数过多会造成调用的不便；
+* 尽可能的减少dispatch 调用的层级，能直接调用就直接调用；异步方法参数的拼装：如果涉及到多次的数据处理，那就放到modal文件里，否则直接放到router文件里；不要方法子组件的问题；
+* Dva Modal 和 router 整体上来看就是一个 controlled 组件（受控组件）；所以需要使用受控组件的模式去控制整个组件。首先：通过设置state 确认默认值（而且这是唯一的方式），其次：响应更新事件时，必须要先应该更新state，然后在使用更新后的值去异步获取数据；
+* 在effect 中调用effect`put({type:'name'})` 会造成死循环
+* Dva 中的state为全局state，所以当页面切换回来的话，state仍然保留原来的状态，有些时候你可能需要 reset effect 来处理需要重置的情况；因此state中的默认值只会在第一次进入modal时有效，当再次进入该路由的时候，数据是上次拉取的数据；
+* state尽可能使用基本数据类型；由于`connect`时候会对返回的数据进行浅比较，如果使用复杂的数据类型，而只改变了其中的属性的话，没有改变对象的引用，会造成组件无法渲染。
+* **一个问题：DVA如何来实现不同的namespace，如果state发生变化的话，当其他modal存在的情况下会渲染吗？？？**
+
+
+## 7、React 和 Vue的区别 View = f(data)（对data处理的区别）
+
+React 和 Vue；Vue中约定使用data保存组件状态，并实现从数据（data）到视图（view）之前的响应式的映射`view = f(data)`；但从data 到 view 是一个异步关系，而data的更新是同步直接更新；React 中使用state保存组件状态，同样也实现了data到view之间个响应式更新；虽然data --> view和Vue一 是异步更新，但data 本身的更新（使用setState）则是异步的；所以在一下场景中需要不同的写法；
+
+```html
+<Select onSelect={(v) => { this.data / this.state}} value={value}></Select>
+```
+
+假定Vue和React都有对应的组件，在Vue组件中 onSelect 函数中的，this.data 能够拿到select 组件的新值；
+
+但是在React组件中，onSelect 通过函数传值能够拿到最新的值，但是this.state 值得变化则要在 setState异步之后才会更新；所以可以理解为对于React来说，只会维护视图层。获取值得时候需要特别注意。
+
+
+
+```js
+this.data.name // 'tianming';
+this.data.name = 'Tayor Swift';// update 
+this.data.name // 'Tayor Swift' 并且该值就是view render的值；Vue
+/**** React ***/
+this.state.name // hello
+this.setState({ name: 'wang yy'});// 
+this.state.name // 仍然是hello
+```
+
+Vue：使用的依赖收集，因此data的更新时，同步的；但是data —> view 是异步的；会深入到data的每个属性上，他的思路是深入每个属性，对每个属性进行控制，进而实现view更新；（因此关于data上的变化有很多的监听方式）
+
+React：使用另外一种思路；全量更新方式。每次更新都会提供一个全新的state对象，因此在更新的时候也需要提供一个全量的state，以供更新。所谓全量意味着：对于基础数值则要求数值更改；对于对象要求对象变化；
+
+在dva架构中，使用扁平的数据结构，更新时全职替换更新；
+
+* reducer 中返回state的时候，也要返回一个新的值；
+* 为了避免对象造成的混淆，尽量在state中使用扁平的数据结构；一旦使用对象，注意在更新时对数据进行copy
+
+```
+dispatch({ type: 'setState', payload: { name :5}});
+dispatch({ type: 'setState', payload: { name :5}});// react-redux中多次state为同一值时，view不会更新；同时
+dispatch({ type: 'setState', payload: { name :obj}});
+dispatch({ type: 'setState', payload: { name :obj}});// 当更新的obj为相同的obj时，也是不会更新的；
+```
+
+
+
+## 8、antd
+ 记录一些antd在使用过程中的问题；
+
+ #### 8.1 form 校验
+
+validator校验方法，是并发执行的；在执行下一次的校验规则之前；前一个校验规则是未知的；但是最后的结果，返回的错误数组和校验规则是一一对应的；
+
+```js
+getFieldDecorator('name', {
+    rules: [
+        {
+            required: true, type: 'string'
+        },
+        {
+            validator() {
+                //xxx
+            }
+        }
+    ]
+})
+```
+#### 8.2 antd-design 设计原则
+ANT DESIGN这个体系里面一般都是8的倍数做间距，然后灰色标示未加载出来，或者无数据等状态
+
+## 9、react 组件，
+对于任意一个可以进行输入交互的组件，必须要设计成同时支持 受控组件和非受控组件的形式；也就是说必须支持`value - onChange` `defaultValue onChange`的形式；
+
+## 10、组合模式和继承模式(composite and inherit)
+对具体问题作出合理的抽象，然后用对应的逻辑模型来实现；比如在页面逻辑的实现过程中，组合模式适合页面结构，通过把页面抽离出各种各样的区块，通过对区块的组合实现整体的页面；组件思想；而对于路由而言，则是一种层级性的结构因此对于路由而言，react-route在遵循了react的基础之上，使用层级组合的方式来实现，路由的层级关系；
+
+## 11、路由
+路由从顶级注入到组件中来，当路由发生变化，会更改组件的props，而组件会重新render；但是由于路由匹配规则的存在，所以对于的组件只会match到能匹配到的路由；location对应的pathname 不是全局的路由状态；只是匹配对应的状态；
+`subscription`中能够监听路由，但同时是有弊端的;
+
+* History.listen 会挂载到全局，路由发生变化即执行，同时路由发生变化时，render也会执行；两者次序不固定，无法确定明确的顺序；
+*  对路由的监听，是一种原始的监听，不会按照既定的路由匹配顺序触发；
+
+当props state和路由信息同时作用在组件上时，合理的数据流通方式
+
+*数据流 action -> history -> state -> view*；让history 控制后续的动作，即便含有params参数；
+
+## 12、PureComponent memo
+* 使用时一定要注意，浅比较的情况下，如果相同，会阻止渲染；这可能会引发bug；
+* shouldComponentUpdate 中对props和state进行浅比较；如果相同则不执行render；(浅比较指的是：对于基本数据类型而言，判断是否相等；引用类型判断引用的是否是同一个)；
+* 适用于变化量比较小的展示性组件；
+* 当props和state变化比较大时，`Component` 的性能优于`PureComponent`；
+* memo 适用于函数式组件；
+
+## 13、ReactDOM
+* use `ReactDom.unmountComponentAtNode(DOM)` and `ReactDom.render()` 实现编程式DOM，实现某些toast 或者 message功能；
+
+## 14、React 中如何触发组件的unMount
+* 使用判断，在父组件中判断如何使用子组件，会触发子组件的unMount；
+* 循环中，key发生变化，会造成对应的item unMount；是否进行组件销毁，在web中由react-dom来决定；

@@ -98,3 +98,15 @@ zgrep 'keyWord' <file name> // 根据关键字搜索压缩文件内容
 
 ### 3、搜狗输入法 繁体简体切换
 * 快捷键 shift + ctrl + f 切换
+
+### 4、zan-proxy 使用指南
+* 切记一定要配置 host；(至少添加一条：localhost 127.0.0.1)
+* http 转发规则中，可以使用正则表达式、对应的捕获列表、环境变量
+
+### 5、VScode chrome debugger
+```
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222
+```
+
+view = f(data) ，框架做了一件事情，就是把 数据data 显示到页面上 view上；现在写的应用页面，包含两部分，一是data 二是view。你处理data，然后把data交给vue去渲染成页面。vue不知道渲染成什么页面，所一页面最终渲染成什么样子是你所写的模板所决定的
+

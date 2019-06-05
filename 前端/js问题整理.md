@@ -64,3 +64,23 @@ may be delete. In my vue project , Use this is efficient
 ```
 
 ### 5、如何实现根据不同的网络状态下载不同清晰度的照片
+
+### 6、模块中的变量使用`Object.defineProperty`带来的取值问题
+a.js 含有defineProperty
+```js
+const obj = {
+  key: ''
+};
+Object.defineProperty(obj, key, {
+  get() {
+    //xxx，情况不同返回的值也不同
+    return 'xxx'
+  }
+})
+```
+b.js 使用obj.key
+```js
+import obj from './a';
+const KEY = obj.key;
+```
+此时若使用KEY变量当做obj.key则会发生意向不到的后果；KEY只会获得b.js 在执行时的值，后续访问obj.key值会发生变化，而KEY则保持不变还是原来的值；所以这种形式定义的变量只能通过 `obj.key`的方式来使用；

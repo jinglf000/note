@@ -47,3 +47,32 @@ import { Link } from 'app/util';// 错写成
 ```
 
 当使用第二种方式时，输入框无法输入值？？
+
+6、React 
+
+Cannot read property 'getHostNode' of null 在使用 antd tabs 组件时，`<TabPane tab="name"></TabPane>`
+or` <TabPane tab={<span>name</span>}></TabPane>`
+
+
+
+### 6、ant-mobile 
+使用ant-mobile Tabs 组件是 传入 tabs的参数数组，不能还有 key字段，否则tab 内容无法显示
+```
+tabs = [
+  {title: '1', key: '1'},
+  {title: '2', key: '2'}
+]
+```
+ant-mobile list-view 配合 DVA 使用时，一定要注意清除 listView dataSource 为默认值
+
+### 7、node_modules 
+package.json 文件引用的版本是多少？
+node_modules 文件夹中的结构是什么？下划线的文件版本是什么？
+
+[中台H5](https://yuque.antfin-inc.com/zhenjiang.szj/blog/kuagyi)
+
+### 8、Content-type setting ？？？ 文件下载？
+
+当一个元素变为inline时，text-align是能够影响到这个元素的，text-align会让元素居中；
+同时原本适用的vertical-align也是适用的，vertical-align:middle。会让元素垂直居中；只不过这种方法限制比较大；
+

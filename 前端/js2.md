@@ -189,3 +189,44 @@
 * 4、对于location，可以使用浏览器location query参数自己处理，或者使用`history.crateLocation(window.location)`的返回值；（包装后的location）
 * 5、手动解析query，拼装query注意点：query参数是：?key=value&key=value这种形式，因此无论是解析还是拼装，只对value进行encodeURIComponent 或 decodeUIRComponent操作；对路径全解析会造成url中再次拼接的url地址参数丢失；
 
+
+### 10、Math min max 方法
+* 传入 ` '' null`时会转换为0，传入 `undefined`时返回NaN
+* 数组`Array.of()` 返回参数所构成的数组
+* `Array.filter()`实现数组过滤，返回满足条件的新数组
+
+### 11、DOM API
+* 用户解析 html 字符串，并获取内部的text；DOM的方法了解一下；
+```js
+let textContent = props.content;
+  if (textContent) {
+    const parse = new DOMParser();
+    const el = parse.parseFromString(textContent, 'text/html');
+    textContent = el.documentElement.textContent || '';
+  }
+```
+
+### 12、meta referrer
+`<meta name="referrer" content="no-referrer">`
+
+当设置为no-referrer时，页面中的任何访问都不会携带`Referrer`参数；可以防止某些图片网站对referrer的限制；
+
+### 13、不要在全局常量中使用get set
+
+对于全局变量或配置变量来说，应该就是const 不变的，而在**不变的变量**中使用，get 或 set会造成每次获取或者读写时返回值不符合期望；不符合编码原则；
+
+```
+const COLOR = '#ffc';
+const CODE = {
+  NA: '#12f'
+}; // 应该是这样
+
+Object.defineProperty(CODE, 'NA', {
+  get() {},// 而不应该这样，这样每次返回值时不固定的；
+  set() {}//
+})
+```
+
+
+
+#### 
